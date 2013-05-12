@@ -1,0 +1,37 @@
+#模板路径
+temp_path=WEB-INF/ftl/
+#生成静态页面存放路径
+html_path=html/
+
+#团购列表页面
+grouplist=g_List.ftl
+#团购详情页面
+groupdisedetails=g_Disedetails.ftl
+#团购列表图片（例： _90x90）
+pic_g_list=
+#团购详情图片 
+pic_g_destail=
+
+#编码格式,模板输出
+encode=UTF-8
+
+#工程相对路径
+ctx=http://localhost:8080/iptv
+
+#首页展柜位查询
+index_mall=iptv_mall
+index_ad=iptv_index
+
+#首页滚动内容查询
+index_content=F9B2F4E4-F362-40B2-B76A-49D3CD188D91
+
+#图片规格  _216x290
+mer_list=
+mer_destail=
+
+#获取机顶盒卡号地址
+UUIDurl=http://124.75.29.164:7001/iptv3a/VASGetUserinfoAction.do?Action=UserTokenRequest&SPID=02101689&ReturnURL=%s&ReturnInfo=%s
+resUrl=http://localhost:8080/iptv/index.do
+
+#导航配置
+menuitems=fashion,momTochild,oldman,family

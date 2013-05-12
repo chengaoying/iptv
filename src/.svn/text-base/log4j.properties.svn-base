@@ -1,0 +1,55 @@
+### \u8f93\u51fa\u5230\u63a7\u5236\u53f0 ###
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target=System.out
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{ABSOLUTE} %5p %c{1}:%L - %m%n
+
+### root logger option ###
+log4j.rootLogger=info, stdout, iptv
+
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%5p [%t] (%F:%L) - %m%n
+#One file every day
+#log4j.appender.R=org.apache.log4j.DailyRollingFileAppender
+#log4j.appender.R.File=${Mall.root}/logs/mall.log
+## \u8f93\u51faDEBUG\u7ea7\u522b\u4ee5\u4e0a\u7684\u65e5\u5fd7
+#log4j.appender.R.Threshold = DEBUG 
+#log4j.appender.R.MaxFileSize=100MB
+#log4j.appender.R.MaxBackupIndex=10 
+#log4j.appender.R.layout=org.apache.log4j.PatternLayout
+#log4j.appender.R.layout.ConversionPattern =%d %c{1}:%L - %m%n
+
+log4j.appender.iptv=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.iptv.File=${iptv.root}/logs/iptv.txt
+log4j.appender.iptv.DatePattern='.'yyyy-MM-dd
+#log4j.appender.mall.MaxFileSize=2048KB
+#log4j.appender.mall.MaxBackupIndex=10
+log4j.appender.iptv.layout=org.apache.log4j.PatternLayout
+log4j.appender.iptv.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm s,SSS}:%5p [%t] (%F:%L) - %m%n
+
+#log4j.logger.org.apache.catalina=debug
+#log4j.logger.org.apache.catalina.core.ContainerBase.Catalina.localhost=debug
+#log4j.logger.org.apache.catalina.core=debug
+#log4j.logger.org.apache.catalina.session=debug
+
+### log JDBC bind parameters ###
+log4j.category.org.hibernate=info
+#Log all JDBC parameters
+log4j.logger.org.hibernate.type=info
+#Log transaction related activity
+log4j.logger.org.hibernate.transaction=info
+
+### log cache activity ###
+#log4j.logger.org.hibernate.type.cache=debug
+
+# JDBC Exception reporter
+log4j.category.org.hibernate.type.util.JDBCExceptionReporter=FATAL
+
+log4j.category.org.springframework=INFO
+#log4j.category.org.springframework.transaction.interceptor=DEBUG
+#log4j.category.org.springframework.jdbc.datasource.DataSourceTransactionManager=DEBUG
+
+log4j.category.org.apache.commons.lang=info
+
+log4j.category.com.gdcn=DEBUG

@@ -1,0 +1,234 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="java.util.*,com.novel.iptv.model.hibernate.CartItem"%>
+
+<%
+	String path = request.getContextPath();
+	String uri = request.getHeader("Referer");
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
+<%
+	int currentPage = Integer.parseInt(((Integer) request
+			.getAttribute("pageNo")).toString());
+	int totalPage = Integer.parseInt(((Integer) request
+			.getAttribute("totalPage")).toString());
+	List cartItems = (List) request.getAttribute("cartItems");
+
+	//System.out.println("jsp->cartItems:" + cartItems.size());
+%>
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<head>
+		<link rel="stylesheet" type="text/css" href="<%=path%>/mycss/css.css" />
+	</head>
+	<style>
+th {
+	color: #F96;
+	text-align: left;
+}
+
+td {
+	color: #FFF;
+}
+
+.count {
+	width: 44px;
+	height: 21px;
+}
+</style>
+
+<script type="text/javascript">
+
+function submit() {
+	
+   var a = document.getElementById("phone").value ;
+	
+   if(a == "" || a == null ){
+     document.getElementById("div2").style.display = "block";
+     return;
+   } else if(a.length != 11) {
+	   
+    	   document.getElementById("div2").style.display = "none";
+    	   document.getElementById("div3").style.display = "block";
+       return;
+   }
+  this.form2.submit(); 
+  
+  this.form1.submit();
+}
+
+
+</script>
+
+	<body>
+		<div
+			style="left:0px;top:0px; position:absolute;background-image: url('<%=path%>/images/bg.jpg'); width: 640px; height: 530px;">
+			<br>
+			<img style="left: 10px; top: 58px; position: absolute;"
+				src="<%=path%>/images/phone.png" />
+			<div
+				style="left: 425px; top: 9px; position: absolute; width: 69px; height: 20px; z-index: 1;">
+				<a href="#"><b style="color: #FFF">新手指引</b> </a>
+			</div>
+			<div
+				style="left: 534px; top: 9px; position: absolute; width: 69px; height: 20px; z-index: 1;">
+				<a href="#"><b style="color: #FFF">我的帐户</b> </a>
+			</div>
+			<div
+				style="left: 126px; top: 21px; position: absolute; width: 494px; height: 35px;">
+				<img id="title" src="<%=path%>/images/t_index.png" />
+				<a href="javascript:title_change('t_index');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 0px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_fashion');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 66px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_children');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 135px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_oldman');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 214px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_family');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 294px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_Special');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 374px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_shoppingcart');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 444px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+			</div>
+			<div style="left: 36px; top: 93px; position: absolute;">
+				<table width="576">
+					<tr>
+						<th height="25px" width="185px">
+							商品名称
+						</th>
+						<th>
+							单价(元)
+						</th>
+						<th>
+							数量
+						</th>
+						<th>
+							合计(元)
+						</th>
+						<th>
+							操作
+						</th>
+					</tr>
+
+					<%
+						Double totalPrice = 0.0;
+						CartItem item;
+						for (int i = 0; i < cartItems.size(); i++) {
+							item = (CartItem) cartItems.get(i);
+							//单项总价
+							Double itemPrice = item.getCartItemNum()
+									* item.getCartItemPrice();
+							//购物车物品总价
+							totalPrice += itemPrice;
+
+							//System.out.println("itemPrice:" + itemPrice);
+							//System.out.println("totalPrice:" + totalPrice);
+					%>
+
+					<tr>
+                         
+						<td><%=item.getCartItemName()%></td>
+						<td><%=item.getCartItemPrice()%></td>
+                          <form  name="form2" action="<%=path%>/userCart.do?method=addCart&productCode=<%=item.getCartItemId()%>&pageNo=<%=currentPage%>"
+								method="post">
+						<td>
+								<input name="num2" type="text" style="width:45px;" 
+									value="<%=item.getCartItemNum()%>"  />
+									<input name="num" type="hidden" value="-1"/>
+						</td>
+						</form>
+						<td><%=itemPrice%></td>
+						<td>
+							<a href="<%=path%>/userCart.do?method=deletCartItem&pageNo=<%=currentPage%>&cartItemCode=<%=item.getCartItemId()%>"><img
+									src="<%=path%>/images/delete.png"> </a>
+						</td>
+					</tr>
+					<%
+						}
+					%>
+				</table>
+
+			</div>
+			<div
+				style="left: 450px; top: 366px; position: absolute; width: 159px; height: 24px">
+				<b style="color: #F63; font-size: 24px">总额:<%=totalPrice%></b>
+			</div>
+			<%
+			 if(currentPage == 1){
+			%>
+		      <img
+					style="left: 159px; top: 395px; position: absolute;"
+					src="<%=path%>/images/buy_up.png"> 
+			<%} 
+			 else {
+		    %>	
+			  	<a href="<%=path%>/userCart.do?method=selectCartItem&pageNo=<%=currentPage - 1%>"><img
+					style="left: 159px; top: 395px; position: absolute;"
+					src="<%=path%>/images/buy_up.png"> </a>
+			
+			<%
+			} 
+			%>
+			<div style="left: 255px; top: 395px; position: absolute; z-index: 1">
+				<b style="color: #FFF; font-size: 30px"><%=currentPage%>/<%=totalPage%></b>
+			</div>
+			<%
+			 if(currentPage == totalPage){
+			%>
+			<img
+					style="left: 303px; top: 395px; position: absolute;"
+					src="<%=path%>/images/buy_down.png"> 
+			<%
+			 } else {
+		    %>
+		    <a href="<%=path%>/userCart.do?method=selectCartItem&pageNo=<%=currentPage + 1%>"><img
+					style="left: 303px; top: 395px; position: absolute;"
+					src="<%=path%>/images/buy_down.png"> </a>
+			<%
+			 }
+			%>				
+			<a href="javascript:window.history.go(-1);"><img
+					style="left: 402px; top: 395px; position: absolute;"
+					src="<%=path%>/images/buy_buck.png"> </a>
+
+			<div
+				style="left: 25px; top: 444px; position: absolute; width: 426px; height: 24px">
+				<b style="color: #F93; font-size: 14px">请输入您的号码,客服人员会与你进行订单确认</b>
+			</div>
+			<img style="left: 23px; top: 474px; position: absolute;"
+				src="<%=path%>/images/telephone.png">
+			<form action="<%=path%>/userCart.do?method=makeOrder&pageNo=1" method="post" id="form1">
+				<input id="phone" name="phone"
+					style="width: 221px; height: 24px; left: 47px; top: 474px; position: absolute;">
+				<div id="div2" style="display:none; width: 200px; height: 24px; left: 50px;  top:500px; position:absolute; color:red; font-size: 13px;">手机号码不能为空!</div>
+				<div id="div3" style="display:none; width: 200px; height: 24px; left: 50px;  top:500px; position:absolute; color:red; font-size: 13px;">请输入正确的手机号码!</div>		
+			
+			<a href="javascript:submit();"><img style="left: 269px; top: 474px; position: absolute;"
+				src="<%=path%>/images/submit.png"></a>
+
+			<input type="reset" name="reset" value=""
+				style="left: 349px; top: 474px; width: 75px; height: 26px; border: 0px; position: absolute; background: url(<%=path%>/images/re.png);" />
+            </form>
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,133 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%
+	String path = request.getContextPath();
+	String uri = request.getHeader("Referer");
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+
+	//System.out.println(path);
+%>
+
+
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<head>
+		<link rel="stylesheet" type="text/css" href="style/css.css" />
+	</head>
+	<style>
+th {
+	color: #F96;
+	text-align: left;
+}
+
+td {
+	color: #FFF;
+}
+
+.count {
+	width: 44px;
+	height: 21px;
+}
+</style>
+
+<script type="text/javascript">
+
+function submit() {
+
+   this.form1.submit();
+}
+
+</script>
+	<body>
+		<div
+			style="left:0px;top:0px; position:absolute;background-image: url('<%=path%>/images/bg.jpg'); width: 640px; height: 530px;">
+			<img style="left: 10px; top: 58px; position: absolute;"
+				src="<%=path%>/images/phone.png" />
+			<div
+				style="left: 425px; top: 9px; position: absolute; width: 69px; height: 20px; z-index: 1;">
+				<a href="#"><b style="color: #FFF">新手指引</b>
+				</a>
+			</div>
+			<div
+				style="left: 534px; top: 9px; position: absolute; width: 69px; height: 20px; z-index: 1;">
+				<a href="#"><b style="color: #FFF">我的账户</b>
+				</a>
+			</div>
+			<div
+				style="left: 126px; top: 21px; position: absolute; width: 494px; height: 35px;">
+				<img id="title" src="<%=path%>/images/t_index.png" />
+				<a href="javascript:title_change('t_index');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 0px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_fashion');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 66px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_children');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 135px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_oldman');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 214px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_family');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 294px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_Special');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 374px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="<%=path%>/userCart.do?method=selectCartItem&pageNo=1"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 444px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+			</div>
+
+			<B
+				style="left: 49px; top: 95px; position: absolute; font-size: 20px; color: #FC0">商品名称:趣味真皮系列拼接手提包</B>
+			<B
+				style="left: 49px; top: 132px; position: absolute; font-size: 20px; color: #F33">商城价:
+				259.00</B>
+			<B
+				style="left: 258px; top: 132px; position: absolute; font-size: 20px; color: #FFF">原价:
+				279</B>
+
+			<img style="left: 40px; top: 167px; position: absolute;"
+				src="<%=path%>/images/bagxiangqin.png">
+			<div
+				style="left: 281px; top: 164px; position: absolute; width: 300px; height: 295">
+				<B style="color: #FFF">产品说明</B>
+			</div>
+			<div 
+				style=" background-image:url(<%=path%>/images/ibuy.png);left:158px; top:482px; position:absolute; width:104px; height:30px">
+				
+				<form action="<%=path%>/userCart.do?method=addCart&productCode=49700068&pageNo=1" name="form1" method="post">
+				
+				<input name="num" type="text" value="1"
+					style="width: 30px; height: 20px; left: 65px; top: 4px; position: absolute;"/>
+				
+			   <input type="hidden" name="num2" value="-1"/>
+			</form>
+			</div>
+			<a
+				href="javascript:submit();"><img
+					style="left: 276px; top: 482px; position: absolute;"
+					src="<%=path%>/images/buy.png">
+			</a>
+			<a href="javascript:window.history.go(-1);"><img
+					style="left: 356px; top: 482px; position: absolute;"
+					src="<%=path%>/images/back.png">
+			</a>
+			<a href="<%=path%>/userCart.do?method=selectCartItem&pageNo=1"><img
+					style="left: 440px; top: 482px; position: absolute;"
+					src="<%=path%>/images/Settlement.png">
+			</a>
+		</div>
+	</body>
+</html>

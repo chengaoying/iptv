@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ax232="http://request.vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:ax233="http://vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://ws.exinterface.ebusiness.do1.com.cn" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax235="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://ws.exinterface.ebusiness.do1.com.cn">
+    <wsdl:documentation>
+		 如加电视商城订单、购物车接口服务
+	</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://vo.exinterface.ebusiness.do1.com.cn/xsd">
+            <xs:complexType name="AddressInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="city" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="inceptPeople" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="inceptPost" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="inceptTel" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="provice" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="supplyAddress" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MerchantShopCar">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="mdList" nillable="true" type="ax233:MdShopCar"/>
+                    <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantName" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MdShopCar">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="attributeDesc" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="buyNum" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="csMdList" nillable="true" type="ax233:CsMdInfo"/>
+                    <xs:element minOccurs="0" name="deliveryType" type="xs:int"/>
+                    <xs:element minOccurs="0" name="discount" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="isGroup" type="xs:int"/>
+                    <xs:element minOccurs="0" name="mdPhotoPath" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandiseCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandiseName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="payType" type="xs:int"/>
+                    <xs:element minOccurs="0" name="price" type="xs:double"/>
+                    <xs:element minOccurs="0" name="shopCarId" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CsMdInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="mdPhotoPath" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandiseCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandiseName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price" type="xs:double"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="OrderInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="confirmDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="deliveryType" type="xs:int"/>
+                    <xs:element minOccurs="0" name="discount" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="endDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="orderId" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="orderItemList" nillable="true" type="ax233:OrderItemInfo"/>
+                    <xs:element minOccurs="0" name="orderStatus" type="xs:int"/>
+                    <xs:element minOccurs="0" name="orgOrderId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="payDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="payType" type="xs:int"/>
+                    <xs:element minOccurs="0" name="postage" type="xs:double"/>
+                    <xs:element minOccurs="0" name="promotionDesc" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="promotionType" type="xs:int"/>
+                    <xs:element minOccurs="0" name="submitDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="totalAmount" type="xs:double"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="OrderItemInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="attributeDesc" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="buyNum" type="xs:int"/>
+                    <xs:element minOccurs="0" name="discount" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="merchandiseCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandiseName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="orderItemId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="orderItemStatus" type="xs:int"/>
+                    <xs:element minOccurs="0" name="price" type="xs:double"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="OrderItemDetail">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="attributeDesc" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="buyNum" type="xs:int"/>
+                    <xs:element minOccurs="0" name="discount" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="markId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandiseCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandiseName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="orderItemId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="orderItemStatus" type="xs:int"/>
+                    <xs:element minOccurs="0" name="price" type="xs:double"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="OrderPromotionInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="orderId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="orderItemId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="promotionDesc" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="promotionId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="promotionType" nillable="true" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="OrderItem">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="attributeId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="buyNum" type="xs:int"/>
+                    <xs:element minOccurs="0" name="groupMdStr" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandiseCode" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax238="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:ax237="http://request.vo.exinterface.ebusiness.do1.com.cn/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.exinterface.ebusiness.do1.com.cn">
+            <xs:import namespace="http://request.vo.exinterface.ebusiness.do1.com.cn/xsd"/>
+            <xs:import namespace="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd"/>
+            <xs:element name="shoppingCartOrder">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax232:ShoppingCartOrderRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="shoppingCartOrderResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax238:ShoppingCartOrderResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="queryShoppingCart">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax232:QueryShoppingCartRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="queryShoppingCartResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax238:QueryShoppingCartResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="queryOrder">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax232:QueryOrderRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="queryOrderResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax238:QueryOrderResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="directBuy">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax232:DirectBuyRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="directBuyResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax238:DirectBuyResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="detailOrder">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax232:DetailOrderRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="detailOrderResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax238:DetailOrderResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="delShoppingCart">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax232:DelShoppingCartRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="delShoppingCartResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax238:DelShoppingCartResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addShoppingCarts">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax232:AddShoppingCartsRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addShoppingCartsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax238:AddShoppingCartResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addShoppingCart">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax232:AddShoppingCartRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addShoppingCartResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax238:AddShoppingCartResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addOrderForMerchant">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax232:AddOrderForMerRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addOrderForMerchantResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax238:AddOrderForMerResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:ax239="http://vo.exinterface.ebusiness.do1.com.cn/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd">
+            <xs:import namespace="http://vo.exinterface.ebusiness.do1.com.cn/xsd"/>
+            <xs:complexType name="ShopCartInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="buyNum" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="shopCartId" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BaseResponseVO">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="interfaceId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="msgId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="respCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="respDesc" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="spId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="timestamp" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ShoppingCartOrderResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax235:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="orderDates" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="orderIds" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="QueryShoppingCartResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax235:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="currentSize" type="xs:int"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="shopCartList" nillable="true" type="ax233:MerchantShopCar"/>
+                            <xs:element minOccurs="0" name="totalSize" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="QueryOrderResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax235:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="currentSize" type="xs:int"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="orderList" nillable="true" type="ax233:OrderInfo"/>
+                            <xs:element minOccurs="0" name="totalSize" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DirectBuyResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax235:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="orderId" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DetailOrderResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax235:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="confirmDate" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="currentSize" type="xs:int"/>
+                            <xs:element minOccurs="0" name="deliveryType" type="xs:int"/>
+                            <xs:element minOccurs="0" name="discount" nillable="true" type="xs:double"/>
+                            <xs:element minOccurs="0" name="endDate" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="inceptPeople" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="inceptPost" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="inceptTel" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="invoiceRemark" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="invoiceTitle" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="isNeedInvoice" type="xs:int"/>
+                            <xs:element minOccurs="0" name="logistcsCompany" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="logistcsId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="merchantId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="merchantName" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="orderId" nillable="true" type="xs:string"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="orderItemList" nillable="true" type="ax233:OrderItemDetail"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="orderPromotionList" nillable="true" type="ax233:OrderPromotionInfo"/>
+                            <xs:element minOccurs="0" name="orderStatus" type="xs:int"/>
+                            <xs:element minOccurs="0" name="payDate" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="payType" type="xs:int"/>
+                            <xs:element minOccurs="0" name="postage" type="xs:double"/>
+                            <xs:element minOccurs="0" name="submitDate" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="supplyAddress" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="supplyTimeReq" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="totalAmount" type="xs:double"/>
+                            <xs:element minOccurs="0" name="totalSize" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DelShoppingCartResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax235:BaseResponseVO">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="AddShoppingCartResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax235:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="merchandiseNum" type="xs:int"/>
+                            <xs:element minOccurs="0" name="totalPrice" type="xs:double"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="AddOrderForMerResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax235:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="orderDates" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="orderIds" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax236="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:ax234="http://vo.exinterface.ebusiness.do1.com.cn/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://request.vo.exinterface.ebusiness.do1.com.cn/xsd">
+            <xs:import namespace="http://vo.exinterface.ebusiness.do1.com.cn/xsd"/>
+            <xs:import namespace="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd"/>
+            <xs:complexType name="BaseRequestVO">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="interfaceId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="msgId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="spId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="spPin" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="timestamp" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ShoppingCartOrderRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax232:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="accountAddress" nillable="true" type="ax233:AddressInfo"/>
+                            <xs:element minOccurs="0" name="cardNo" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="deliveryType" type="xs:int"/>
+                            <xs:element minOccurs="0" name="invoiceRemark" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="invoiceTitle" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="isInvoiceNeeded" type="xs:int"/>
+                            <xs:element minOccurs="0" name="messageDesc" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="orderSource" type="xs:int"/>
+                            <xs:element minOccurs="0" name="payType" type="xs:int"/>
+                            <xs:element minOccurs="0" name="sendAddressId" nillable="true" type="xs:string"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="shopCartList" nillable="true" type="ax236:ShopCartInfo"/>
+                            <xs:element minOccurs="0" name="supplyTimeReq" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="QueryShoppingCartRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax232:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="cardNo" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="currentPage" type="xs:int"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="pageSize" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="QueryOrderRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax232:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="cardNo" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="currentPage" type="xs:int"/>
+                            <xs:element minOccurs="0" name="merchandiseName" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="orderStatus" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="orderTimeEnd" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="orderTimeStart" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="orgOrderId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="pageSize" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DirectBuyRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax232:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="accountAddress" nillable="true" type="ax233:AddressInfo"/>
+                            <xs:element minOccurs="0" name="attributeId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="buyNum" type="xs:int"/>
+                            <xs:element minOccurs="0" name="cardNo" nillable="true" type="xs:string"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="csMdCodes" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="deliveryType" type="xs:int"/>
+                            <xs:element minOccurs="0" name="invoiceRemark" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="invoiceTitle" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="isGroup" type="xs:int"/>
+                            <xs:element minOccurs="0" name="isInvoiceNeeded" type="xs:int"/>
+                            <xs:element minOccurs="0" name="merchandiseCode" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="messageDesc" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="orderSource" type="xs:int"/>
+                            <xs:element minOccurs="0" name="payType" type="xs:int"/>
+                            <xs:element minOccurs="0" name="sendAddressId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="supplyTimeReq" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DetailOrderRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax232:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="currentPage" type="xs:int"/>
+                            <xs:element minOccurs="0" name="orderId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="pageSize" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DelShoppingCartRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax232:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="cardNo" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="shopCartIds" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="AddShoppingCartsRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax232:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="cardNo" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="shoppingCartItems" nillable="true" type="ax232:ShoppingCartItem"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="ShoppingCartItem">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="attributeId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="groupMdStr" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandiseCode" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AddShoppingCartRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax232:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="attributeId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="cardNo" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="groupMdStr" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="merchandiseCode" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="AddOrderForMerRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax232:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="accountAddress" nillable="true" type="ax233:AddressInfo"/>
+                            <xs:element minOccurs="0" name="cardNo" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="deliveryType" type="xs:int"/>
+                            <xs:element minOccurs="0" name="invoiceRemark" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="invoiceTitle" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="isInvoiceNeeded" type="xs:int"/>
+                            <xs:element minOccurs="0" name="merchantCode" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="messageDesc" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="orderItems" nillable="true" type="ax233:OrderItem"/>
+                            <xs:element minOccurs="0" name="orderSource" type="xs:int"/>
+                            <xs:element minOccurs="0" name="payType" type="xs:int"/>
+                            <xs:element minOccurs="0" name="sendAddressId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="supplyTimeReq" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="detailOrderRequest">
+        <wsdl:part name="parameters" element="ns:detailOrder"/>
+    </wsdl:message>
+    <wsdl:message name="detailOrderResponse">
+        <wsdl:part name="parameters" element="ns:detailOrderResponse"/>
+    </wsdl:message>
+    <wsdl:message name="shoppingCartOrderRequest">
+        <wsdl:part name="parameters" element="ns:shoppingCartOrder"/>
+    </wsdl:message>
+    <wsdl:message name="shoppingCartOrderResponse">
+        <wsdl:part name="parameters" element="ns:shoppingCartOrderResponse"/>
+    </wsdl:message>
+    <wsdl:message name="queryShoppingCartRequest">
+        <wsdl:part name="parameters" element="ns:queryShoppingCart"/>
+    </wsdl:message>
+    <wsdl:message name="queryShoppingCartResponse">
+        <wsdl:part name="parameters" element="ns:queryShoppingCartResponse"/>
+    </wsdl:message>
+    <wsdl:message name="queryOrderRequest">
+        <wsdl:part name="parameters" element="ns:queryOrder"/>
+    </wsdl:message>
+    <wsdl:message name="queryOrderResponse">
+        <wsdl:part name="parameters" element="ns:queryOrderResponse"/>
+    </wsdl:message>
+    <wsdl:message name="directBuyRequest">
+        <wsdl:part name="parameters" element="ns:directBuy"/>
+    </wsdl:message>
+    <wsdl:message name="directBuyResponse">
+        <wsdl:part name="parameters" element="ns:directBuyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="addShoppingCartsRequest">
+        <wsdl:part name="parameters" element="ns:addShoppingCarts"/>
+    </wsdl:message>
+    <wsdl:message name="addShoppingCartsResponse">
+        <wsdl:part name="parameters" element="ns:addShoppingCartsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="delShoppingCartRequest">
+        <wsdl:part name="parameters" element="ns:delShoppingCart"/>
+    </wsdl:message>
+    <wsdl:message name="delShoppingCartResponse">
+        <wsdl:part name="parameters" element="ns:delShoppingCartResponse"/>
+    </wsdl:message>
+    <wsdl:message name="addShoppingCartRequest">
+        <wsdl:part name="parameters" element="ns:addShoppingCart"/>
+    </wsdl:message>
+    <wsdl:message name="addShoppingCartResponse">
+        <wsdl:part name="parameters" element="ns:addShoppingCartResponse"/>
+    </wsdl:message>
+    <wsdl:message name="addOrderForMerchantRequest">
+        <wsdl:part name="parameters" element="ns:addOrderForMerchant"/>
+    </wsdl:message>
+    <wsdl:message name="addOrderForMerchantResponse">
+        <wsdl:part name="parameters" element="ns:addOrderForMerchantResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="OrderServicePortType">
+        <wsdl:operation name="detailOrder">
+            <wsdl:input message="ns:detailOrderRequest" wsaw:Action="urn:detailOrder"/>
+            <wsdl:output message="ns:detailOrderResponse" wsaw:Action="urn:detailOrderResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="shoppingCartOrder">
+            <wsdl:input message="ns:shoppingCartOrderRequest" wsaw:Action="urn:shoppingCartOrder"/>
+            <wsdl:output message="ns:shoppingCartOrderResponse" wsaw:Action="urn:shoppingCartOrderResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="queryShoppingCart">
+            <wsdl:input message="ns:queryShoppingCartRequest" wsaw:Action="urn:queryShoppingCart"/>
+            <wsdl:output message="ns:queryShoppingCartResponse" wsaw:Action="urn:queryShoppingCartResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="queryOrder">
+            <wsdl:input message="ns:queryOrderRequest" wsaw:Action="urn:queryOrder"/>
+            <wsdl:output message="ns:queryOrderResponse" wsaw:Action="urn:queryOrderResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="directBuy">
+            <wsdl:input message="ns:directBuyRequest" wsaw:Action="urn:directBuy"/>
+            <wsdl:output message="ns:directBuyResponse" wsaw:Action="urn:directBuyResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="addShoppingCarts">
+            <wsdl:input message="ns:addShoppingCartsRequest" wsaw:Action="urn:addShoppingCarts"/>
+            <wsdl:output message="ns:addShoppingCartsResponse" wsaw:Action="urn:addShoppingCartsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="delShoppingCart">
+            <wsdl:input message="ns:delShoppingCartRequest" wsaw:Action="urn:delShoppingCart"/>
+            <wsdl:output message="ns:delShoppingCartResponse" wsaw:Action="urn:delShoppingCartResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="addShoppingCart">
+            <wsdl:input message="ns:addShoppingCartRequest" wsaw:Action="urn:addShoppingCart"/>
+            <wsdl:output message="ns:addShoppingCartResponse" wsaw:Action="urn:addShoppingCartResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="addOrderForMerchant">
+            <wsdl:input message="ns:addOrderForMerchantRequest" wsaw:Action="urn:addOrderForMerchant"/>
+            <wsdl:output message="ns:addOrderForMerchantResponse" wsaw:Action="urn:addOrderForMerchantResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="OrderServiceSoap11Binding" type="ns:OrderServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="detailOrder">
+            <soap:operation soapAction="urn:detailOrder" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shoppingCartOrder">
+            <soap:operation soapAction="urn:shoppingCartOrder" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="queryShoppingCart">
+            <soap:operation soapAction="urn:queryShoppingCart" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="directBuy">
+            <soap:operation soapAction="urn:directBuy" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="queryOrder">
+            <soap:operation soapAction="urn:queryOrder" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addShoppingCarts">
+            <soap:operation soapAction="urn:addShoppingCarts" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="delShoppingCart">
+            <soap:operation soapAction="urn:delShoppingCart" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addShoppingCart">
+            <soap:operation soapAction="urn:addShoppingCart" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addOrderForMerchant">
+            <soap:operation soapAction="urn:addOrderForMerchant" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="OrderServiceSoap12Binding" type="ns:OrderServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="detailOrder">
+            <soap12:operation soapAction="urn:detailOrder" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shoppingCartOrder">
+            <soap12:operation soapAction="urn:shoppingCartOrder" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="queryShoppingCart">
+            <soap12:operation soapAction="urn:queryShoppingCart" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="directBuy">
+            <soap12:operation soapAction="urn:directBuy" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="queryOrder">
+            <soap12:operation soapAction="urn:queryOrder" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addShoppingCarts">
+            <soap12:operation soapAction="urn:addShoppingCarts" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="delShoppingCart">
+            <soap12:operation soapAction="urn:delShoppingCart" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addShoppingCart">
+            <soap12:operation soapAction="urn:addShoppingCart" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addOrderForMerchant">
+            <soap12:operation soapAction="urn:addOrderForMerchant" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="OrderServiceHttpBinding" type="ns:OrderServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="detailOrder">
+            <http:operation location="OrderService/detailOrder"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="detailOrder"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="detailOrder"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shoppingCartOrder">
+            <http:operation location="OrderService/shoppingCartOrder"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="shoppingCartOrder"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="shoppingCartOrder"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="queryShoppingCart">
+            <http:operation location="OrderService/queryShoppingCart"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="queryShoppingCart"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="queryShoppingCart"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="directBuy">
+            <http:operation location="OrderService/directBuy"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="directBuy"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="directBuy"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="queryOrder">
+            <http:operation location="OrderService/queryOrder"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="queryOrder"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="queryOrder"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addShoppingCarts">
+            <http:operation location="OrderService/addShoppingCarts"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="addShoppingCarts"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="addShoppingCarts"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="delShoppingCart">
+            <http:operation location="OrderService/delShoppingCart"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="delShoppingCart"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="delShoppingCart"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addShoppingCart">
+            <http:operation location="OrderService/addShoppingCart"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="addShoppingCart"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="addShoppingCart"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addOrderForMerchant">
+            <http:operation location="OrderService/addOrderForMerchant"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="addOrderForMerchant"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="addOrderForMerchant"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="OrderService">
+        <wsdl:port name="OrderServiceHttpSoap11Endpoint" binding="ns:OrderServiceSoap11Binding">
+            <soap:address location="http://123.196.117.57:8080/tvshop/services/OrderService.OrderServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="OrderServiceHttpSoap12Endpoint" binding="ns:OrderServiceSoap12Binding">
+            <soap12:address location="http://123.196.117.57:8080/tvshop/services/OrderService.OrderServiceHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="OrderServiceHttpEndpoint" binding="ns:OrderServiceHttpBinding">
+            <http:address location="http://123.196.117.57:8080/tvshop/services/OrderService.OrderServiceHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

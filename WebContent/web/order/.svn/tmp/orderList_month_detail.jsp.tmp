@@ -1,0 +1,214 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@page
+	import="cn.com.do1.ebusiness.exinterface.vo.response.xsd.DetailOrderResponseVO,cn.com.do1.ebusiness.exinterface.vo.xsd.OrderInfo,cn.com.do1.ebusiness.exinterface.vo.xsd.OrderItemDetail"%>
+
+<%
+	String path = request.getContextPath();
+	String uri = request.getHeader("Referer");
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/" ;
+			System.out.println(uri);
+%>
+
+<%
+	DetailOrderResponseVO detvo = (DetailOrderResponseVO) request
+			.getAttribute("detvo");
+
+    int currentpage = Integer.parseInt(((Integer) request
+			.getAttribute("pageno")).toString());
+			
+	OrderItemDetail[] orderitems = detvo.getOrderItemList();
+	
+		int totalsize = detvo.getTotalSize();
+	int currentsize = detvo.getCurrentSize();
+
+	int totalpage = (totalsize % 8 == 0) ? (totalsize / 8)
+			: ((totalsize / 8) + 1);
+
+	//System.out.println(totalsize + ":" + currentsize);
+	System.out.println(totalpage);
+
+	if (currentpage <= 1) {
+		currentpage = 1;
+	} else if (currentpage >= totalpage) {
+		currentpage = totalpage;
+	}
+
+	//System.out.println(orderitems.length);
+	
+	
+	
+%>
+
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<head>
+		<link rel="stylesheet" type="text/css" href="<%=path%>/mycss/css.css" />
+	</head>
+	<style>
+th {
+	color: #F96;
+	text-align: left;
+}
+
+td {
+	color: #FFF;
+}
+
+.count {
+	width: 44px;
+	height: 21px;
+}
+</style>
+	<body>
+		<div
+			style="left: 0px; top: 0px; position: absolute; background-image: url('<%=path%>/images/bg.jpg'); width: 640px; height: 530px;">
+			<img style="left: 10px; top: 58px; position: absolute;"
+				src="<%=path%>/images/phone.png" />
+			<div
+				style="left: 425px; top: 9px; position: absolute; width: 79px; height: 20px; z-index: 1;">
+				<a href="#"><b style="color: #FFF">新手指引</b>
+				</a>
+			</div>
+			<div
+				style="left: 534px; top: 9px; position: absolute; width: 69px; height: 20px; z-index: 1;">
+				<a href="<%=basePath %>web/order/orderQuery.jsp"><b style="color: #FFF">我的帐户</b>
+				</a>
+			</div>
+			<div
+				style="left: 126px; top: 21px; position: absolute; width: 494px; height: 35px;">
+				<img id="title" src="<%=path%>/images/t_index.png" />
+				<a href="javascript:title_change('t_index');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 0px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_fashion');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 66px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_children');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 135px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_oldman');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 214px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_family');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 294px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_Special');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 374px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_shoppingcart');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 444px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+			</div>
+			<b
+				style="left: 176px; top: 110px; position: absolute; width: 373px; height: 26px; color: #F63; font-size: 24px">一个月的订单历史记录查询
+			</b>
+			<b
+				style="left: 79px; top: 136px; position: absolute; width: 373px; height: 26px; color: #FFF; font-size: 24px">订购时间:<%=detvo.getConfirmDate() %>
+			</b>
+			<b
+				style="left: 79px; top: 168px; position: absolute; width: 254px; height: 26px; color: #FFF; font-size: 24px">联系电话:<%=detvo.getMobile() %>
+			</b>
+			<div style="left: 78px; top: 207px; position: absolute;">
+				<table width="483">
+					<tr>
+						<th height="25px" width="169px">
+							商品名称
+						</th>
+						<th>
+							单价
+						</th>
+						<th>
+							数量 
+						</th>
+						<th>
+							合计
+						</th>
+						<th>
+							操作
+						</th>
+					</tr>
+					<%
+						int i;
+						OrderItemDetail orderitem;
+						Double totalprice;
+						for (i = 0; i < orderitems.length; i++) {
+							 orderitem = orderitems[i];
+							
+					%>
+
+					<tr>
+						<td>
+						<%=orderitem.getMerchandiseName() %>
+						</td>
+						<td>
+						<%=orderitem.getPrice() %>
+						</td>
+						<td>
+						<%=orderitem.getBuyNum() %>
+						</td>
+						<td>
+						<%=orderitem.getBuyNum()*orderitem.getPrice() %>
+						</td>
+						<td>
+						<%=orderitem.getOrderItemStatus() %>
+						</td>
+					</tr>
+
+					<%
+						}
+					%>
+				</table>
+
+			</div>
+			<div
+				style="left: 423px; top: 449px; position: absolute; width: 159px; height: 24px">
+				<b style="color: #F63; font-size: 24px">总额:<%=detvo.getTotalAmount() %></b>
+			</div>
+			<% if (currentpage == 1) { %>
+			<img style="left: 150px; top: 480px; position: absolute;"
+					src="<%=path%>/images/buy_up.png">
+			
+			<%} else { %>
+			<a href="<%=path%>/userOrder.do?method=orderSearch_detail&pageno=<%=currentpage - 1%>&orderid=<%=detvo.getOrderId() %>"><img
+					style="left: 150px; top: 480px; position: absolute;"
+					src="<%=path%>/images/buy_up.png">
+			</a>
+			<% }%>
+			<div style="left: 250px; top: 480px; position: absolute; z-index: 1">
+				<b style="color: #FFF; font-size: 30px"><%=currentpage%>/<%=totalpage%></b>
+			</div>
+			<% if (currentpage == totalpage) { %>
+			<img style="left: 300px; top: 480px; position: absolute;"
+					src="<%=path%>/images/buy_down.png">
+			
+			<%} else { %>
+			  <a href="<%=path%>/userOrder.do?method=orderSearch_detail&pageno=<%=currentpage + 1%>&orderid=<%=detvo.getOrderId() %>"><img
+					style="left: 300px; top: 480px; position: absolute;"
+					src="<%=path%>/images/buy_down.png">
+			</a>
+			<%} %>
+			<a href="javascript:window.history.go(-1);"><img
+					style="left: 402px; top: 480px; position: absolute;"
+					src="<%=path%>/images/buy_buck.png">
+			</a>
+		</div>
+		<table width="483">
+			<tr>
+				<tr>
+					<td>
+						<br>
+					</td>
+				</tr>
+			</tr>
+		</table>
+	</body>
+</html>

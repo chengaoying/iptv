@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource" destroy-method="close">
+	<!--
+	    <property name="driver">
+		   <value>com.microsoft.sqlserver.jdbc.SQLServerDriver</value>
+		</property>
+	    <property name="driverUrl">
+		     <value>jdbc:sqlserver://192.168.16.30:1433;DatabaseName=iptvgo;user=cartoon;password=cartoon</value>
+		    <value>jdbc:sqlserver://218.240.129.160:1433;DatabaseName=NOVEL_IPTV_TEST;user=novel_test;password=novel!@#$%^</value>
+		</property>
+  		<property name="user" value="cartoon"/>
+	  	<property name="password" value="cartoon"/>
+	  	<property name="alias" value="resource"/>
+	  	<property name="houseKeepingSleepTime" value="90000"/>
+	  	<property name="prototypeCount" value="5"/>
+	  	<property name="maximumConnectionCount" value="50"/>
+	  	<property name="minimumConnectionCount" value="10"/>
+	 	<property name="trace" value="true"/>
+	  	<property name="verbose" value="true"/>
+	  	<property name="houseKeepingTestSql" value="select getdate()" />
+  	-->
+  	
+  		<property name="driver"> 
+	        <value>com.mysql.jdbc.Driver</value>
+	    </property>
+	    <property name="driverUrl">
+	        <value>jdbc:mysql://localhost:3306/mall?user=root&amp;password=&amp;useUnicode=true&amp;characterEncoding=utf8</value>
+	    </property>
+	    <property name="user" value="root" />
+	    <property name="password" value="" />
+	    <property name="houseKeepingSleepTime" value="90000" />
+	    <property name="prototypeCount" value="0" />
+	    <property name="maximumConnectionCount" value="50" />
+	    <property name="minimumConnectionCount" value="2" />
+	    <property name="simultaneousBuildThrottle" value="50" />
+	    <property name="maximumConnectionLifetime" value="14400000" />
+	    <property name="houseKeepingTestSql" value="select CURRENT_DATE" />
+  	
+  	</bean>
+	
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">       
+		<property name="dataSource"><ref bean="dataSource" /></property>
+		<property name="mappingResources">
+			<list>
+				<value>com/novel/iptv/model/hibernate/Tb_entity.hbm.xml</value>
+				<value>com/novel/iptv/model/hibernate/Merbrand.hbm.xml</value>
+				<value>com/novel/iptv/model/hibernate/Operator.hbm.xml</value>
+				<value>com/novel/iptv/model/hibernate/CartItem.hbm.xml</value>
+			</list>           
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.statement_cache.size">30</prop>
+				<prop key="hibernate.jdbc.fetch_size">40</prop>
+				<prop key="hibernate.jdbc.batch_size">20</prop>
+				<prop key="hibernate.connection.pool_size">5</prop>
+				<prop key="hibernate.max_fetch_depth">2</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</prop>
+				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>
+			</props>
+		</property>
+	</bean>  
+	
+	<!-- 配置事务管理器bean,使用HibernateTransactionManager事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <!-- 为事务管理器注入sessionFactory" -->
+        <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<!-- 配置事务拦截器Bean -->
+	<bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+    	<!-- 为事务拦截器bean注入一个事物管理器 -->
+    	<property name="transactionManager" ref="transactionManager"></property>
+    	<property name="transactionAttributes">
+	    	<!-- 定义事务传播属性 -->
+	        <props>
+	                <prop key="insert*">PROPAGATION_REQUIRED</prop>
+	                <prop key="import*">PROPAGATION_REQUIRED</prop>
+	                <prop key="update*">PROPAGATION_REQUIRED</prop>
+	                <prop key="save*">PROPAGATION_REQUIRED</prop>
+	                <prop key="add*">PROPAGATION_REQUIRED</prop>
+	                <prop key="edit*">PROPAGATION_REQUIRED</prop>
+	                <prop key="remove*">PROPAGATION_REQUIRED</prop>
+	                <prop key="delete*">PROPAGATION_REQUIRED</prop>
+	                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+	                <prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+	                <prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
+	                <prop key="change*">PROPAGATION_REQUIRED</prop>
+	                <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+	        </props>
+    	</property>
+	</bean>
+
+	<!-- 定义BeanNameAutoProxyCreator -->
+	<bean id="baseServiceTemplate" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+    	<!-- 指定满足哪些bean自动生成业务代理 -->
+    	<property name="beanNames">
+    		<!-- 需要自动创建事务代理的bean -->
+	        <list>
+	            <value>baseService</value>
+	            <value>cartService</value>
+	        </list>
+        	<!-- 其它需要自动创建事务代理的bean -->
+    	</property>
+    	<property name="interceptorNames">
+	        <list>
+	            <value>transactionInterceptor</value>
+	            <!-- 可增加其它的interceptor -->
+	        </list>
+    	</property>
+	</bean>
+	<bean id="passwordEncoder" class="org.acegisecurity.providers.encoding.Md5PasswordEncoder"/>
+</beans>

@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<html>
+<head>
+<title>ERROR</title>
+</head>
+<body>
+<<<<<<< .mine
+<jsp:include page="/web/common/MenuItem.jsp"></jsp:include>
+=======
+<jsp:include page="../web/common/MenuItem.jsp"></jsp:include>
+>>>>>>> .r176
+....${userId }....Error<br />
+${msg}
+</body>
+</html>

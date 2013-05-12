@@ -1,0 +1,121 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page  
+	import="java.util.*,cn.com.do1.ebusiness.exinterface.vo.xsd.MdShopCar,cn.com.do1.ebusiness.exinterface.vo.xsd.MerchantShopCar"%>
+
+<%
+	String path = request.getContextPath();
+	String uri = request.getHeader("Referer");
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<%
+    int currentPage = Integer.parseInt(((Integer) request
+		.getAttribute("pageNo")).toString());
+	int totalPage = Integer.parseInt(((Integer) request
+			.getAttribute("totalPage")).toString());
+
+	MerchantShopCar[] cartList = (MerchantShopCar[]) request.getAttribute("cartList");
+
+%>
+
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head><link rel="stylesheet" type="text/css" href="<%=path%>/mycss/css.css" />
+</head>
+<style>
+th{
+	color:#F96;
+	text-align:left;
+}
+td{
+	color:#FFF;
+}
+.count{
+	 width:44px; 
+	 height:21px;
+}
+</style>
+<body>
+<div style="left:0px;top:0px; position:absolute;background-image: url('images/bg.jpg'); width: 640px; height: 530px;">
+<img style="left:10px;top:58px; position:absolute;" src="images/phone.png"/>
+<div style="left:425px;top:9px; position:absolute; width: 69px; height: 20px; z-index:1;"><a href="#"><b style="color:#FFF">新手指引</b></a></div>
+        <div style="left:534px;top:9px; position:absolute; width: 69px; height: 20px; z-index:1;"><a href="#"><b style="color:#FFF">我的账户</b></a></div>
+		<div style="left:126px;top:21px; position:absolute; width: 494px; height: 35px;"><img id="title" src="images/t_index.png" />
+			<a href="javascript:title_change('t_index');"><img src="images/empty.gif" style="left:0px;top:8px; position:absolute; width:58px; height: 32px;" /></a>
+			<a href="javascript:title_change('t_fashion');"><img src="images/empty.gif" style="left:66px;top:8px; position:absolute; width:58px; height: 32px;" /></a>
+			<a href="javascript:title_change('t_children');"><img src="images/empty.gif" style="left:135px;top:8px; position:absolute; width:58px; height: 32px;" /></a>
+			<a href="javascript:title_change('t_oldman');"><img src="images/empty.gif" style="left:214px;top:8px; position:absolute; width:58px; height: 32px;" /></a>
+			<a href="javascript:title_change('t_family');"><img src="images/empty.gif" style="left:294px;top:8px; position:absolute; width:58px; height: 32px;" /></a>
+			<a href="javascript:title_change('t_Special');"><img src="images/empty.gif" style="left:374px;top:8px; position:absolute; width:58px; height: 32px;" /></a>
+			<a href="javascript:title_change('t_shoppingcart');"><img src="images/empty.gif" style="left:444px;top:8px; position:absolute; width:58px; height: 32px;" /></a>
+		</div>
+        <b style="left:176px;top:110px; position:absolute; width:373px; height:26px;color:#F63; font-size:24px">订单提交成功!</b>
+       <b style="left:79px;top:136px; position:absolute; width:373px; height:26px;color:#FFF; font-size:24px">订购时间: </b>
+       <b style="left:79px;top:168px; position:absolute; width:254px; height:26px;color:#FFF; font-size:24px">联系电话: </b>
+<div style="left:78px;top:207px; position:absolute;">
+<table width="483">
+	<tr>
+    	<th height="25px" width="169px">商品名称</th><th>单价(元)</th><th>数量</th><th>合计(元)</th><th>操作</th>
+    </tr>
+    
+    <%
+        	MdShopCar[] mdcar = null;
+        	MdShopCar mdshop = null;
+        	Double totalPrice = 0.0;
+        	for (int i = 0; i < cartList.length; i++) {
+        		MerchantShopCar merchant = (MerchantShopCar) cartList[i];
+        		mdcar = merchant.getMdList();
+        		for (int j = 0; j < mdcar.length; j++) {
+        			mdshop = mdcar[j];
+        			
+        			//单项总价
+					Double itemPrice = mdshop.getBuyNum() * mdshop.getPrice();
+					//购物车物品总价
+					totalPrice += itemPrice;
+        	
+        %>
+    
+    <tr>
+    	<td><%=mdshop.getMerchandiseName() %></td><td><%=mdshop.getPrice()%>(元)</td>
+    	<td><%=mdshop.getBuyNum()%></td>
+    	<td><%=itemPrice %></td><td>  </td>
+    </tr>
+    
+    <%
+        		}
+        	}
+    
+    %>
+</table>
+
+ </div>
+ <div style="left:423px;top:449px; position:absolute; width:159px; height:24px"><b style="color:#F63; font-size:24px">总额:<%=totalPrice %></b></div>
+      <%
+         if(currentPage == 1){
+	 %>
+	   <img style="left:150px;top:480px; position:absolute;" src="images/buy_up.png"><
+     
+	   <%
+         } else {
+	   %>
+         <a href="<%=path%>/userCart.do?method=makeOrder&pageNo=<%=currentPage - 1 %>"><img style="left:150px;top:480px; position:absolute;" src="images/buy_up.png"></a>
+       <%
+         }
+       %>
+     <div style="left:255px;top:480px; position:absolute; z-index:1"><b style="color:#FFF; font-size:30px"><%=currentPage %>/<%=totalPage %></b></div>
+      <%
+         if(currentPage == totalPage){
+	 %>
+	   <img style="left:300px;top:480px; position:absolute;" src="images/buy_down.png">
+     <%
+       } else {
+     %>
+     <a href="<%=path%>/userCart.do?method=makeOrder&pageNo=<%=currentPage + 1 %>"><img style="left:300px;top:480px; position:absolute;" src="images/buy_down.png"></a>
+     <%
+       }
+     %>
+<a href="javascript:window.history.go(-1);"><img style="left:402px;top:480px; position:absolute;" src="images/buy_buck.png"></a></div>
+</body>
+</html>

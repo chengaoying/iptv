@@ -1,0 +1,158 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%
+	String path = request.getContextPath();
+	String uri = request.getHeader("Referer");
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<head>
+		<link rel="stylesheet" type="text/css" href="<%=path%>/mycss/css.css" />
+	</head>
+	<style>
+th {
+	color: #F96;
+	text-align: left;
+}
+
+td {
+	color: #FFF;
+}
+
+.count {
+	width: 44px;
+	height: 21px;
+}
+</style>
+	<script type="text/javascript">
+
+function check() {
+
+	var year = document.getElementById("year").value;
+	var month = document.getElementById("month").value;
+	var day = document.getElementById("day").value;
+	//alert(year);
+
+	if (year == "" || year == null || month == "" || month == null || day == ""
+			|| day == null) {
+		//alert("日期不能为空,请输入完整!");
+
+		document.getElementById("display").style.display = "block";
+
+		return;
+	}
+	var str = year +'-'+ month +'-' + day;
+	//alert(str);
+
+	var exp = /^((((19|20)\d{2})-(0?[13578]|1[02])-(0?[1-9]|[12]\d|3[01]))|(((19|20)\d{2})-(0?[469]|11)-(0?[1-9]|[12]\d|30))|(((19|20)\d{2})-0?2-(0?[1-9]|1\d|2[0-8]))|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))-0?2-(0?[1-9]|[12]\d)))$/;
+
+
+	var a = exp.test(str);
+
+	if (!a) {
+		document.getElementById("display").style.display = "block";
+		return;
+	}
+
+	//window.location.href="<%=path%>/userOrder.do?method=orderSearch_list&pageno=1";
+	this.form1.submit();
+
+	//alert(this.form1.submit);
+	//alert(document.getElementById("form1"));
+}
+</script>
+	<body>
+		<div
+			style="left: 0px; top: 0px; position: absolute; background-image: url('<%=path%>/images/bg.jpg'); width: 640px; height: 530px;">
+			<img style="left: 10px; top: 58px; position: absolute;"
+				src="<%=path%>/images/phone.png" />
+			<div
+				style="left: 425px; top: 9px; position: absolute; width: 69px; height: 20px; z-index: 1;">
+				<a href="#"><b style="color: #FFF">新手指引</b> </a>
+			</div>
+			<div
+				style="left: 534px; top: 9px; position: absolute; width: 69px; height: 20px; z-index: 1;">
+				<a href="<%=basePath%>web/order/orderQuery.jsp"><b
+					style="color: #FFF">我的帐户</b> </a>
+			</div>
+			<div
+				style="left: 126px; top: 21px; position: absolute; width: 494px; height: 35px;">
+				<img id="title" src="<%=path%>images/t_index.png" />
+				<a href="javascript:title_change('t_index');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 0px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_fashion');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 66px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_children');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 135px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_oldman');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 214px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_family');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 294px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_Special');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 374px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_shoppingcart');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 444px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+			</div>
+			<div
+				style="top: 154px; left: 20px; position: absolute; width: 280px;">
+				<b style="font-size: 22px; color: #FFF;">1、查询一个月订单记录</b>
+			</div>
+			<a href="<%=path%>/userOrder.do?method=orderSearch&currentPage=1"><img
+					style="top: 146px; left: 308px; position: absolute;"
+					src="<%=path%>/images/find.gif"> </a>
+			<div
+				style="top: 238px; left: 20px; position: absolute; width: 450px;">
+				<b style="font-size: 22px; color: #FFF;">2、根据您的订购日期，查询当天订购的信息</b>
+			</div>
+			<form id="form1" method="post"
+				action="<%=path%>/userOrder.do?method=orderSearch_list&pageno=1">
+				<div
+					style="top: 278px; left: 55px; position: absolute; width: 370px;">
+
+					<b style="font-size: 22px; color: #FFF;">订购日期 <input
+							name="year" id="year" type="text" style="width: 60px" size="4" maxlength="4" />年
+						<input name="month" id="month" type="text" style="width: 40px"
+							size="2" maxlength="2"/>月 <input name="day" id="day" type="text"
+							style="width: 40px" size="2" maxlength="2"/>日 </b>
+					<input type="hidden" name="value" value="value" />
+				</div>
+
+				<div id="display"
+					style="top: 323px; left: 155px; position: absolute; width: 370px; color: red; display: none;">
+					请输入正确的格式:例如2011-01-01!
+				</div>
+				
+
+				<input type="reset" name="reset" value=""
+					style="left: 244px; top: 352px; width: 86px; height: 39px; border: 0px; position: absolute; background: url(<%=path%>/images/reinput.gif);" />
+				<a href="javascript:check();"> <img src="<%=path%>/images/find.gif"
+						style="left: 350px; top: 352px; position: absolute;" /> </a>
+
+				<a href="javascript:window.history.go(-1);"><img
+						style="left: 457px; top: 352px; position: absolute;"
+						src="<%=path%>/images/buy_buck.png"> </a>
+			</form>
+			<b
+				style="left: 230px; top: 403px; position: absolute; color: #F90; font-size: 18px">详情请拨打电话:
+				4008-958-958</b>
+		</div>
+	</body>
+</html>

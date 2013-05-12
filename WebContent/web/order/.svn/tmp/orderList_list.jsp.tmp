@@ -1,0 +1,189 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page
+	import="cn.com.do1.ebusiness.exinterface.vo.response.xsd.QueryOrderResponseVO,cn.com.do1.ebusiness.exinterface.vo.xsd.OrderInfo"%>
+
+
+<%
+	String path = request.getContextPath();
+	String uri = request.getHeader("Referer");
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+
+	//System.out.println(basePath);
+%>
+
+<%
+	QueryOrderResponseVO resvo2 = (QueryOrderResponseVO) request
+			.getAttribute("resvo2");
+
+	String year = (String) request.getAttribute("year");
+	String month = (String) request.getAttribute("month");
+	String day = (String) request.getAttribute("day");
+
+	OrderInfo[] orderinfo = resvo2.getOrderList();
+
+	int currentpage = Integer.parseInt(((Integer) request
+			.getAttribute("pageno")).toString());
+
+	//System.out.println(currentpage);
+
+	int totalsize = resvo2.getTotalSize();
+	int currentsize = resvo2.getCurrentSize();
+
+	int totalpage = (totalsize % 8 == 0) ? (totalsize / 8)
+			: ((totalsize / 8) + 1);
+
+	//System.out.println(totalsize + ":" + currentsize);
+	//System.out.println(totalpage);
+
+	if (currentpage <= 1) {
+		currentpage = 1;
+	} else if (currentpage >= totalpage) {
+		currentpage = totalpage;
+	}
+
+	//System.out.println(orderinfo.length);
+
+	//request.setAttribute("search","1");
+%>
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<head>
+		<link rel="stylesheet" type="text/css" href="<%=path%>/mycss/css.css" />
+	</head>
+	<style>
+th {
+	color: #F96;
+	text-align: left;
+}
+
+td {
+	color: #FFF;
+}
+
+.count {
+	width: 44px;
+	height: 21px;
+}
+</style>
+	<body>
+		<div
+			style="left: 0px; top: 0px; position: absolute; background-image: url('<%=path%>/images/bg.jpg'); width: 640px; height: 530px;">
+			<img style="left: 10px; top: 58px; position: absolute;"
+				src="<%=path%>/images/phone.png" />
+			<div
+				style="left: 425px; top: 9px; position: absolute; width: 69px; height: 20px; z-index: 1;">
+				<a href="#"><b style="color: #FFF">新手指引</b> </a>
+			</div>
+			<div
+				style="left: 534px; top: 9px; position: absolute; width: 69px; height: 20px; z-index: 1;">
+				<a href="<%=basePath%>web/order/orderQuery.jsp"><b
+					style="color: #FFF">我的帐户</b> </a>
+			</div>
+			<div
+				style="left: 126px; top: 21px; position: absolute; width: 494px; height: 35px;">
+				<img id="title" src="<%=path%>/images/t_index.png" />
+				<a href="javascript:title_change('t_index');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 0px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_fashion');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 66px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_children');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 135px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_oldman');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 214px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_family');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 294px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_Special');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 374px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+				<a href="javascript:title_change('t_shoppingcart');"><img
+						src="<%=path%>/images/empty.gif"
+						style="left: 444px; top: 8px; position: absolute; width: 58px; height: 32px;" />
+				</a>
+			</div>
+			<b
+				style="left: 230px; top: 109px; position: absolute; width: 290px; height: 26px; color: #F63; font-size: 23px">订单记录查询</b>
+			<div style="left: 89px; top: 155px; position: absolute;">
+				<table width="483">
+					<tr>
+						<th height="25px" width="244px">
+							<b style="font-size: 24px">订单日期</b>
+						</th>
+						<th height="25px" width="161px">
+							<b style="font-size: 24px">详细电话</b>
+						</th>
+						<th height="25px"></th>
+					</tr>
+
+					<%
+						int i;
+						for (i = 0; i < orderinfo.length; i++) {
+							OrderInfo info = orderinfo[i];
+					%>
+
+					<tr>
+						<td>
+							<%=info.getPayDate()%>
+						</td>
+						<td>
+							<%=info.getMobile()%>
+						</td>
+						<td>
+							<a
+								href="<%=path%>/userOrder.do?method=orderSearch_detail&pageno=1&orderid=<%=info.getOrderId()%>"><img
+									src="<%=path%>/images/1_03.gif"> </a>
+						</td>
+					</tr>
+					<%
+						}
+					%>
+				</table>
+
+			</div>
+			<div
+				style="left: 229px; top: 489px; position: absolute; width: 309px; height: 24px">
+				<b style="color: #F63; font-size: 20px">详情请拨打电话: 4008-958-958</b>
+			</div>
+			<% if (currentpage == 1) { %>
+			<img
+					style="left: 214px; top: 440px; position: absolute;"
+					src="<%=path%>/images/buy_up.png"/> 
+			<%} 
+			else {
+			%>	
+			<a href="<%=path%>/userOrder.do?method=orderSearch_list&pageno=<%=currentpage - 1%>&year=<%=year %>&month=<%=month %>&day=<%=day %>"><img
+					style="left: 214px; top: 440px; position: absolute;"
+					src="<%=path%>/images/buy_up.png"/> </a>	
+			
+			<%} %>
+			<div style="left: 315px; top: 440px; position: absolute; z-index: 1">
+				<b style="color: #FFF; font-size: 30px"><%=currentpage%>/<%=totalpage%></b>
+			</div>
+			<% if (currentpage == totalpage) { %>
+			<img
+					style="left: 358px; top: 440px; position: absolute;"
+					src="<%=path%>/images/buy_down.png"/> 
+			<%} else { %>
+			 <a href="<%=path%>/userOrder.do?method=orderSearch_list&pageno=<%=currentpage + 1%>&year=<%=year %>&month=<%=month %>&day=<%=day %>"><img
+					style="left: 358px; top: 440px; position: absolute;"
+					src="<%=path%>/images/buy_down.png"/> </a>
+			<%} %>		
+			<a href="javascript:window.history.go(-1);"><img
+					style="left: 456px; top: 440px; position: absolute;"
+					src="<%=path%>/images/buy_buck.png"> </a>
+		</div>
+	</body>
+</html>

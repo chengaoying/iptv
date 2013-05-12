@@ -1,0 +1,92 @@
+10
+
+dir
+229
+svn://192.168.16.30/IPTV/source/iptv/src/com/novel/iptv
+svn://192.168.16.30
+
+
+
+2011-09-01T09:31:12.531250Z
+227
+cgy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a66e4ab8-e49c-8545-8cc1-67e41165241c
+
+model
+dir
+
+dao
+dir
+
+services
+dir
+
+temp
+dir
+
+index
+dir
+
+group
+dir
+
+IndexServlet.java
+file
+180
+
+
+
+2011-08-29T04:12:56.000000Z
+8fbc22f037462b5c25b317fc2e4247ad
+2011-08-29T04:02:55.484375Z
+94
+llb
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+708
+
+action
+dir
+
+util
+dir
+
+exception
+dir
+
+webservice
+dir
+

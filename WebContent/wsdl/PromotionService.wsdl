@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ax29="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ax27="http://request.vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:ns="http://ws.exinterface.ebusiness.do1.com.cn" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:ax210="http://vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://ws.exinterface.ebusiness.do1.com.cn">
+    <wsdl:documentation>
+		 如加电视商城促销活动接口服务
+	</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://vo.exinterface.ebusiness.do1.com.cn/xsd">
+            <xs:complexType name="RushbuyInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="beginTime" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="buyNumLimit" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="consultPrice" type="xs:double"/>
+                    <xs:element minOccurs="0" name="createTime" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="endTime" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="haveBuyNum" type="xs:int"/>
+                    <xs:element minOccurs="0" name="havePersonCount" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="image" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="lowestPersonCount" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="mdDesc" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="mdPicList" nillable="true" type="ax210:MdPicInfo"/>
+                    <xs:element minOccurs="0" name="merchandiseCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandiseName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price" type="xs:double"/>
+                    <xs:element minOccurs="0" name="rushbuyPrice" type="xs:double"/>
+                    <xs:element minOccurs="0" name="status" type="xs:int"/>
+                    <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MdPicInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="merchandisePic" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MerchandiseDiscountInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="beginTime" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="discount" type="xs:double"/>
+                    <xs:element minOccurs="0" name="endTime" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="imagePath" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status" type="xs:int"/>
+                    <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DiscountActInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="beginTime" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="createTime" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="discountAmount1" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="discountAmount2" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="discountAmount3" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="discountRate1" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="discountRate2" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="discountRate3" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="endTime" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status" type="xs:int"/>
+                    <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MdInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="brandCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="brandName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="businessFlag" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="consultPrice" type="xs:double"/>
+                    <xs:element minOccurs="0" name="deliveryType" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="discount" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="memberGroup" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandiseCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandiseName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchandisePic" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="merchantName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="payType" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price" type="xs:double"/>
+                    <xs:element minOccurs="0" name="sortId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="sortName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status" type="xs:int"/>
+                    <xs:element minOccurs="0" name="totalSaled" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax212="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:ax28="http://request.vo.exinterface.ebusiness.do1.com.cn/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.exinterface.ebusiness.do1.com.cn">
+            <xs:import namespace="http://request.vo.exinterface.ebusiness.do1.com.cn/xsd"/>
+            <xs:import namespace="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd"/>
+            <xs:element name="rushBuyQuery">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax27:RushBuyQueryRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="rushBuyQueryResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax29:RushBuyQueryResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="rushBuyDetailQuery">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax27:RushBuyQueryDetailRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="rushBuyDetailQueryResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax29:RushBuyDetailQueryResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="queryMerchandiseDiscount">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax27:MerchandiseDiscountQueryRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="queryMerchandiseDiscountResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax29:MerchandiseDiscountQueryResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="mdDiscountQuery">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax27:MdDiscountQueryRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="mdDiscountQueryResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax29:MdDiscountQueryResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="detailMerchandiseDiscount">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax27:MerchandiseDiscountDetailRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="detailMerchandiseDiscountResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax29:MerchandiseDiscountDetailResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:ax211="http://vo.exinterface.ebusiness.do1.com.cn/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd">
+            <xs:import namespace="http://vo.exinterface.ebusiness.do1.com.cn/xsd"/>
+            <xs:complexType name="BaseResponseVO">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="interfaceId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="msgId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="respCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="respDesc" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="spId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="timestamp" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RushBuyQueryResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax29:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="currentSize" type="xs:int"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="rushbuyList" nillable="true" type="ax210:RushbuyInfo"/>
+                            <xs:element minOccurs="0" name="totalSize" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="RushBuyDetailQueryResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax29:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="beginTime" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="buyNumLimit" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="consultPrice" type="xs:double"/>
+                            <xs:element minOccurs="0" name="createTime" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="endTime" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="haveBuyNum" type="xs:int"/>
+                            <xs:element minOccurs="0" name="havePersonCount" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="image" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="lowestPersonCount" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="mdDesc" nillable="true" type="xs:string"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="mdPicList" nillable="true" type="ax210:MdPicInfo"/>
+                            <xs:element minOccurs="0" name="merchandiseCode" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="merchandiseName" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="price" type="xs:double"/>
+                            <xs:element minOccurs="0" name="rushbuyPrice" type="xs:double"/>
+                            <xs:element minOccurs="0" name="status" type="xs:int"/>
+                            <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="type" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MerchandiseDiscountQueryResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax29:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="currentSize" type="xs:int"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="merchandiseDiscountList" nillable="true" type="ax210:MerchandiseDiscountInfo"/>
+                            <xs:element minOccurs="0" name="totalSize" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MdDiscountQueryResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax29:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="currentSize" type="xs:int"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="discountActList" nillable="true" type="ax210:DiscountActInfo"/>
+                            <xs:element minOccurs="0" name="totalSize" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MerchandiseDiscountDetailResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax29:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="beginTime" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="discount" type="xs:double"/>
+                            <xs:element minOccurs="0" name="endTime" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="imagePath" nillable="true" type="xs:string"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="mdList" nillable="true" type="ax210:MdInfo"/>
+                            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="status" type="xs:int"/>
+                            <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://request.vo.exinterface.ebusiness.do1.com.cn/xsd">
+            <xs:complexType name="BaseRequestVO">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="interfaceId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="msgId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="spId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="spPin" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="timestamp" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RushBuyQueryRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax27:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="beginTime" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="currentPage" type="xs:int"/>
+                            <xs:element minOccurs="0" name="endTime" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="pageSize" type="xs:int"/>
+                            <xs:element minOccurs="0" name="sortType" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="status" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="type" nillable="true" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="RushBuyQueryDetailRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax27:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MerchandiseDiscountQueryRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax27:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="beginTime" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="currentPage" type="xs:int"/>
+                            <xs:element minOccurs="0" name="endTime" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="merchandiseCode" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="pageSize" type="xs:int"/>
+                            <xs:element minOccurs="0" name="sortType" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="status" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MdDiscountQueryRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax27:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="beginTime" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="currentPage" type="xs:int"/>
+                            <xs:element minOccurs="0" name="endTime" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="pageSize" type="xs:int"/>
+                            <xs:element minOccurs="0" name="status" nillable="true" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MerchandiseDiscountDetailRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax27:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="mdDiscountQueryRequest">
+        <wsdl:part name="parameters" element="ns:mdDiscountQuery"/>
+    </wsdl:message>
+    <wsdl:message name="mdDiscountQueryResponse">
+        <wsdl:part name="parameters" element="ns:mdDiscountQueryResponse"/>
+    </wsdl:message>
+    <wsdl:message name="rushBuyDetailQueryRequest">
+        <wsdl:part name="parameters" element="ns:rushBuyDetailQuery"/>
+    </wsdl:message>
+    <wsdl:message name="rushBuyDetailQueryResponse">
+        <wsdl:part name="parameters" element="ns:rushBuyDetailQueryResponse"/>
+    </wsdl:message>
+    <wsdl:message name="queryMerchandiseDiscountRequest">
+        <wsdl:part name="parameters" element="ns:queryMerchandiseDiscount"/>
+    </wsdl:message>
+    <wsdl:message name="queryMerchandiseDiscountResponse">
+        <wsdl:part name="parameters" element="ns:queryMerchandiseDiscountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="rushBuyQueryRequest">
+        <wsdl:part name="parameters" element="ns:rushBuyQuery"/>
+    </wsdl:message>
+    <wsdl:message name="rushBuyQueryResponse">
+        <wsdl:part name="parameters" element="ns:rushBuyQueryResponse"/>
+    </wsdl:message>
+    <wsdl:message name="detailMerchandiseDiscountRequest">
+        <wsdl:part name="parameters" element="ns:detailMerchandiseDiscount"/>
+    </wsdl:message>
+    <wsdl:message name="detailMerchandiseDiscountResponse">
+        <wsdl:part name="parameters" element="ns:detailMerchandiseDiscountResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="PromotionServicePortType">
+        <wsdl:operation name="mdDiscountQuery">
+            <wsdl:input message="ns:mdDiscountQueryRequest" wsaw:Action="urn:mdDiscountQuery"/>
+            <wsdl:output message="ns:mdDiscountQueryResponse" wsaw:Action="urn:mdDiscountQueryResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="rushBuyDetailQuery">
+            <wsdl:input message="ns:rushBuyDetailQueryRequest" wsaw:Action="urn:rushBuyDetailQuery"/>
+            <wsdl:output message="ns:rushBuyDetailQueryResponse" wsaw:Action="urn:rushBuyDetailQueryResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="queryMerchandiseDiscount">
+            <wsdl:input message="ns:queryMerchandiseDiscountRequest" wsaw:Action="urn:queryMerchandiseDiscount"/>
+            <wsdl:output message="ns:queryMerchandiseDiscountResponse" wsaw:Action="urn:queryMerchandiseDiscountResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="rushBuyQuery">
+            <wsdl:input message="ns:rushBuyQueryRequest" wsaw:Action="urn:rushBuyQuery"/>
+            <wsdl:output message="ns:rushBuyQueryResponse" wsaw:Action="urn:rushBuyQueryResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="detailMerchandiseDiscount">
+            <wsdl:input message="ns:detailMerchandiseDiscountRequest" wsaw:Action="urn:detailMerchandiseDiscount"/>
+            <wsdl:output message="ns:detailMerchandiseDiscountResponse" wsaw:Action="urn:detailMerchandiseDiscountResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PromotionServiceSoap11Binding" type="ns:PromotionServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="mdDiscountQuery">
+            <soap:operation soapAction="urn:mdDiscountQuery" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="rushBuyDetailQuery">
+            <soap:operation soapAction="urn:rushBuyDetailQuery" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="queryMerchandiseDiscount">
+            <soap:operation soapAction="urn:queryMerchandiseDiscount" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="rushBuyQuery">
+            <soap:operation soapAction="urn:rushBuyQuery" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="detailMerchandiseDiscount">
+            <soap:operation soapAction="urn:detailMerchandiseDiscount" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="PromotionServiceSoap12Binding" type="ns:PromotionServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="mdDiscountQuery">
+            <soap12:operation soapAction="urn:mdDiscountQuery" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="rushBuyDetailQuery">
+            <soap12:operation soapAction="urn:rushBuyDetailQuery" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="queryMerchandiseDiscount">
+            <soap12:operation soapAction="urn:queryMerchandiseDiscount" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="rushBuyQuery">
+            <soap12:operation soapAction="urn:rushBuyQuery" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="detailMerchandiseDiscount">
+            <soap12:operation soapAction="urn:detailMerchandiseDiscount" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="PromotionServiceHttpBinding" type="ns:PromotionServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="mdDiscountQuery">
+            <http:operation location="PromotionService/mdDiscountQuery"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="mdDiscountQuery"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="mdDiscountQuery"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="rushBuyDetailQuery">
+            <http:operation location="PromotionService/rushBuyDetailQuery"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="rushBuyDetailQuery"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="rushBuyDetailQuery"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="queryMerchandiseDiscount">
+            <http:operation location="PromotionService/queryMerchandiseDiscount"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="queryMerchandiseDiscount"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="queryMerchandiseDiscount"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="rushBuyQuery">
+            <http:operation location="PromotionService/rushBuyQuery"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="rushBuyQuery"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="rushBuyQuery"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="detailMerchandiseDiscount">
+            <http:operation location="PromotionService/detailMerchandiseDiscount"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="detailMerchandiseDiscount"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="detailMerchandiseDiscount"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PromotionService">
+        <wsdl:port name="PromotionServiceHttpSoap11Endpoint" binding="ns:PromotionServiceSoap11Binding">
+            <soap:address location="http://123.196.117.57:8080/tvshop/services/PromotionService.PromotionServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="PromotionServiceHttpSoap12Endpoint" binding="ns:PromotionServiceSoap12Binding">
+            <soap12:address location="http://123.196.117.57:8080/tvshop/services/PromotionService.PromotionServiceHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="PromotionServiceHttpEndpoint" binding="ns:PromotionServiceHttpBinding">
+            <http:address location="http://123.196.117.57:8080/tvshop/services/PromotionService.PromotionServiceHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

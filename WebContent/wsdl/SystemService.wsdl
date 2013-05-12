@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ax215="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://ws.exinterface.ebusiness.do1.com.cn" xmlns:ax213="http://request.vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax217="http://vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://ws.exinterface.ebusiness.do1.com.cn">
+    <wsdl:documentation>
+		 如加电视商城系统设置接口服务
+	</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://vo.exinterface.ebusiness.do1.com.cn/xsd">
+            <xs:complexType name="MemberInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="city" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="defaultAddress" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="memberId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nickname" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="province" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="tvCardId" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MemberAddressInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="address" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="addressId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="city" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="isDefault" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="postcode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="province" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="telphone" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax214="http://request.vo.exinterface.ebusiness.do1.com.cn/xsd" xmlns:ax216="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.exinterface.ebusiness.do1.com.cn">
+            <xs:import namespace="http://request.vo.exinterface.ebusiness.do1.com.cn/xsd"/>
+            <xs:import namespace="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd"/>
+            <xs:element name="memberModify">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax214:MemberModifyRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="memberModifyResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax215:MemberModifyResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="memberListQuery">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax214:MemberListQueryRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="memberListQueryResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax215:MemberListQueryResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="memberDetailQuery">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax214:MemberDetailQueryRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="memberDetailQueryResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax215:MemberDetailQueryResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="memberDel">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax214:MemberDelRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="memberDelResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax215:MemberDelResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="memberAdd">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax214:MemberAddRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="memberAddResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax215:MemberAddResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="detailContent">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="requestVO" nillable="true" type="ax214:DataSynchronizedRequestVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="detailContentResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax215:DataSynchronizedResponseVO"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:ax218="http://vo.exinterface.ebusiness.do1.com.cn/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://response.vo.exinterface.ebusiness.do1.com.cn/xsd">
+            <xs:import namespace="http://vo.exinterface.ebusiness.do1.com.cn/xsd"/>
+            <xs:complexType name="BaseResponseVO">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="interfaceId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="msgId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="respCode" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="respDesc" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="spId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="timestamp" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MemberModifyResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax215:BaseResponseVO">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MemberListQueryResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax215:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="currentSize" nillable="true" type="xs:int"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="memberList" nillable="true" type="ax217:MemberInfo"/>
+                            <xs:element minOccurs="0" name="totalSize" nillable="true" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MemberDetailQueryResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax215:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="EMail" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="company" nillable="true" type="xs:string"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="memberAddressList" nillable="true" type="ax217:MemberAddressInfo"/>
+                            <xs:element minOccurs="0" name="memberId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="needInvoice" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="nickname" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="sex" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="status" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="tvCardId" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MemberDelResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax215:BaseResponseVO">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MemberAddResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax215:BaseResponseVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="memberId" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DataSynchronizedResponseVO">
+                <xs:complexContent>
+                    <xs:extension base="ax215:BaseResponseVO">
+                        <xs:sequence/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://request.vo.exinterface.ebusiness.do1.com.cn/xsd">
+            <xs:complexType name="BaseRequestVO">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="interfaceId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="msgId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="spId" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="spPin" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="timestamp" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="MemberModifyRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax213:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="EMail" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="company" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="memberId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="needInvoice" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="nickname" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="sex" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="status" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="tvCardId" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MemberListQueryRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax213:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="currentPage" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="pageSize" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="status" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="tvCardId" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MemberDetailQueryRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax213:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="memberId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="tvCardId" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MemberDelRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax213:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="memberId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="tvCardId" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MemberAddRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax213:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="EMail" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="company" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="memberId" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="needInvoice" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="nickname" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="sex" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="status" nillable="true" type="xs:int"/>
+                            <xs:element minOccurs="0" name="tvCardId" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DataSynchronizedRequestVO">
+                <xs:complexContent>
+                    <xs:extension base="ax213:BaseRequestVO">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="isSyn" type="xs:int"/>
+                            <xs:element minOccurs="0" name="synFlag" type="xs:int"/>
+                            <xs:element minOccurs="0" name="synRemark" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="synTime" nillable="true" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="memberListQueryRequest">
+        <wsdl:part name="parameters" element="ns:memberListQuery"/>
+    </wsdl:message>
+    <wsdl:message name="memberListQueryResponse">
+        <wsdl:part name="parameters" element="ns:memberListQueryResponse"/>
+    </wsdl:message>
+    <wsdl:message name="memberAddRequest">
+        <wsdl:part name="parameters" element="ns:memberAdd"/>
+    </wsdl:message>
+    <wsdl:message name="memberAddResponse">
+        <wsdl:part name="parameters" element="ns:memberAddResponse"/>
+    </wsdl:message>
+    <wsdl:message name="memberDelRequest">
+        <wsdl:part name="parameters" element="ns:memberDel"/>
+    </wsdl:message>
+    <wsdl:message name="memberDelResponse">
+        <wsdl:part name="parameters" element="ns:memberDelResponse"/>
+    </wsdl:message>
+    <wsdl:message name="detailContentRequest">
+        <wsdl:part name="parameters" element="ns:detailContent"/>
+    </wsdl:message>
+    <wsdl:message name="detailContentResponse">
+        <wsdl:part name="parameters" element="ns:detailContentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="memberDetailQueryRequest">
+        <wsdl:part name="parameters" element="ns:memberDetailQuery"/>
+    </wsdl:message>
+    <wsdl:message name="memberDetailQueryResponse">
+        <wsdl:part name="parameters" element="ns:memberDetailQueryResponse"/>
+    </wsdl:message>
+    <wsdl:message name="memberModifyRequest">
+        <wsdl:part name="parameters" element="ns:memberModify"/>
+    </wsdl:message>
+    <wsdl:message name="memberModifyResponse">
+        <wsdl:part name="parameters" element="ns:memberModifyResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="SystemServicePortType">
+        <wsdl:operation name="memberListQuery">
+            <wsdl:input message="ns:memberListQueryRequest" wsaw:Action="urn:memberListQuery"/>
+            <wsdl:output message="ns:memberListQueryResponse" wsaw:Action="urn:memberListQueryResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="memberAdd">
+            <wsdl:input message="ns:memberAddRequest" wsaw:Action="urn:memberAdd"/>
+            <wsdl:output message="ns:memberAddResponse" wsaw:Action="urn:memberAddResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="memberDel">
+            <wsdl:input message="ns:memberDelRequest" wsaw:Action="urn:memberDel"/>
+            <wsdl:output message="ns:memberDelResponse" wsaw:Action="urn:memberDelResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="detailContent">
+            <wsdl:input message="ns:detailContentRequest" wsaw:Action="urn:detailContent"/>
+            <wsdl:output message="ns:detailContentResponse" wsaw:Action="urn:detailContentResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="memberDetailQuery">
+            <wsdl:input message="ns:memberDetailQueryRequest" wsaw:Action="urn:memberDetailQuery"/>
+            <wsdl:output message="ns:memberDetailQueryResponse" wsaw:Action="urn:memberDetailQueryResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="memberModify">
+            <wsdl:input message="ns:memberModifyRequest" wsaw:Action="urn:memberModify"/>
+            <wsdl:output message="ns:memberModifyResponse" wsaw:Action="urn:memberModifyResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SystemServiceSoap11Binding" type="ns:SystemServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="memberListQuery">
+            <soap:operation soapAction="urn:memberListQuery" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="memberAdd">
+            <soap:operation soapAction="urn:memberAdd" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="memberDel">
+            <soap:operation soapAction="urn:memberDel" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="memberDetailQuery">
+            <soap:operation soapAction="urn:memberDetailQuery" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="detailContent">
+            <soap:operation soapAction="urn:detailContent" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="memberModify">
+            <soap:operation soapAction="urn:memberModify" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="SystemServiceSoap12Binding" type="ns:SystemServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="memberListQuery">
+            <soap12:operation soapAction="urn:memberListQuery" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="memberAdd">
+            <soap12:operation soapAction="urn:memberAdd" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="memberDel">
+            <soap12:operation soapAction="urn:memberDel" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="memberDetailQuery">
+            <soap12:operation soapAction="urn:memberDetailQuery" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="detailContent">
+            <soap12:operation soapAction="urn:detailContent" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="memberModify">
+            <soap12:operation soapAction="urn:memberModify" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="SystemServiceHttpBinding" type="ns:SystemServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="memberListQuery">
+            <http:operation location="SystemService/memberListQuery"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="memberListQuery"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="memberListQuery"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="memberAdd">
+            <http:operation location="SystemService/memberAdd"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="memberAdd"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="memberAdd"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="memberDel">
+            <http:operation location="SystemService/memberDel"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="memberDel"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="memberDel"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="memberDetailQuery">
+            <http:operation location="SystemService/memberDetailQuery"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="memberDetailQuery"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="memberDetailQuery"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="detailContent">
+            <http:operation location="SystemService/detailContent"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="detailContent"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="detailContent"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="memberModify">
+            <http:operation location="SystemService/memberModify"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="memberModify"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="memberModify"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SystemService">
+        <wsdl:port name="SystemServiceHttpSoap11Endpoint" binding="ns:SystemServiceSoap11Binding">
+            <soap:address location="http://123.196.117.57:8080/tvshop/services/SystemService.SystemServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="SystemServiceHttpSoap12Endpoint" binding="ns:SystemServiceSoap12Binding">
+            <soap12:address location="http://123.196.117.57:8080/tvshop/services/SystemService.SystemServiceHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="SystemServiceHttpEndpoint" binding="ns:SystemServiceHttpBinding">
+            <http:address location="http://123.196.117.57:8080/tvshop/services/SystemService.SystemServiceHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

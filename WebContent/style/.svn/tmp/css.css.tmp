@@ -1,0 +1,42 @@
+body{
+	background-color:#182424;
+	}
+img{
+	border: 0px;
+}
+.tit_font2{
+	top:5px;
+	text-align:center;
+	position:absolute;
+	width:95px;
+	height:20px;
+	font-size:14px;	
+	vertical-align: bottom;
+}
+a{
+	text-decoration: none;
+}
+.a_font{
+	color:black;
+	
+}
+.a_click{
+	color:#800000;
+
+}
+
+th {
+	color: #F96;
+	font_size:18px;
+	text-align: left;
+}
+td {
+	font_size:21px;
+	font-weight:600;
+	color: #FFF;
+	font-size:16px;
+}
+.count {
+	width: 44px;
+	height: 21px;
+}

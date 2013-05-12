@@ -1,0 +1,121 @@
+10
+
+dir
+229
+svn://192.168.16.30/IPTV/source/iptv/WebContent
+svn://192.168.16.30
+
+
+
+2011-09-01T09:31:48.328125Z
+229
+cgy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a66e4ab8-e49c-8545-8cc1-67e41165241c
+
+
+
+
+
+
+
+
+((conflict temp dir update deleted deleted (version svn://192.168.16.30 3 180 IPTV/source/iptv/WebContent/temp dir) (version svn://192.168.16.30 3 214 IPTV/source/iptv/WebContent/temp none)))
+
+META-INF
+dir
+
+style
+dir
+
+myjs
+dir
+
+index.jsp
+file
+208
+
+
+
+
+12f5d3cd18a3057100f16d816d8547e9
+2011-08-31T01:12:23.875000Z
+182
+llb
+has-props
+
+
+
+
+index.jsp.r180
+index.jsp.r208
+index.jsp.mine
+
+html
+dir
+
+error.jsp
+file
+260
+
+
+
+2011-09-06T08:16:44.000000Z
+97e3ff634bdd78fefa565b15e1410994
+2011-09-06T08:08:42.062500Z
+257
+yhj
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+959
+
+images
+dir
+
+WEB-INF
+dir
+
+wsdl
+dir
+
+internal
+dir
+
+web
+dir
+
+mycss
+dir
+

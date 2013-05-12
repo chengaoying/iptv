@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.novel.iptv.model.hibernate">
+	<class name="Tb_brand" table="tb_brand">
+		<id name="id"><generator class="assigned"></generator> </id>
+		<property name="name"></property>
+		<property name="code"></property>
+		<property name="photo"></property>
+	</class>
+	
+	<class name="Tb_delivery_fee" table="Tb_delivery_fee">
+		<id name="id"><generator class="assigned"> </generator> </id>
+		<property name="merchandise_code"></property>
+		<property name="province"></property>
+		<property name="outside_province"></property>
+	</class>
+	
+	<class name="Tb_merchandise_attr" table="tb_merchandise_attr">
+		<id name="id"><generator class="assigned"> </generator> </id>
+		<properties name="merchandise_code"></properties>
+		<properties name="opt_desc"></properties>
+		<properties name="opt_value"></properties>
+		<properties name="show_type"></properties>
+		<properties name="pic_link"></properties>
+		<properties name="parent"></properties>
+		<properties name="parent_id"></properties>
+		<properties name="update_time"></properties>
+		<properties name="update_by"></properties>
+		<properties name="remove_flag"></properties>
+		<properties name="idx"></properties>	
+	</class>
+	
+	<class name="Tb_merchandise_image" table="tb_merchandise_image">
+		<id name="id"><generator class="assigned"> </generator> </id>
+		<property name="merchandise_code"></property>
+		<property name="image_path"></property>
+		<property name="type"></property>
+		<property name="idx"></property>
+		<property name="image_size_byte"></property>
+	</class>
+	
+	<class name="Tb_merchandise_info" table="tb_merchandise_info">
+		<id name="code"><generator class="assigned"> </generator> </id>
+		<property name="name"></property>
+		<property name="inner_code"></property>
+		<property name="merchant_code"></property>
+		<property name="sort_id"></property>
+		<property name="brand_id"></property>
+		<property name="consult_price"></property>
+		<property name="price"></property>
+		<property name="short_desc"></property>
+		<property name="long_desc_file"></property>
+		<property name="total_stock"></property>
+		<property name="create_time"></property>
+		<property name="create_account_id"></property>
+		<property name="last_modify_time"></property>
+		<property name="last_modify_account_id"></property>
+		<property name="status"></property>
+		<property name="show_web"></property>
+		<property name="buy_web"></property>
+		<property name="show_tv"></property>
+		<property name="buy_tv"></property>
+		<property name="show_phone"></property>
+		<property name="buy_phone"></property>
+		<property name="group_normal"></property>
+		<property name="group_silver"></property>
+		<property name="group_gold"></property>
+		<property name="group_platinum"></property>
+		<property name="keyword"></property>
+		<property name="opening_saled_qty"></property>
+		<property name="total_saled_qty"></property>
+		<property name="up_frame"></property>
+		<property name="down_frame"></property>
+		<property name="business_flag"></property>
+		<property name="donate_integral"></property>
+		<property name="delivery_type"></property>
+		<property name="merchant_name"></property>
+		<property name="sort_name"></property>
+		<property name="media_link"></property>
+		<property name="reservation"></property>
+	</class>
+	
+	<class name="Tb_merchandise_stock" table="tb_merchandise_stock">
+		<id name="id"><generator class="assigned"> </generator> </id>
+		<property name="merchandise_code"></property>
+		<property name="attr_ids"></property>
+		<property name="stock"></property>
+		<property name="update_time"></property>
+		<property name="remove_flag"></property>
+		<property name="after_remove_upd_stock"></property>
+		<property name="attr_desc"></property>
+		<property name="attr_ids_md5"></property>
+	</class>
+	
+	<class name="Tb_merchant_info" table="tb_merchant_info">
+		<id name="code"><generator class="assigned"> </generator> </id>
+		<property name="merchant_name"></property>
+		<property name="real_name"></property>
+		<property name="status"></property>
+		<property name="nature"></property>
+		<property name="corporation"></property>
+		<property name="type"></property>
+		<property name="reg_code"></property>
+		<property name="business_scope"></property>
+		<property name="operate_date"></property>
+		<property name="contact_person"></property>
+		<property name="contact_phone"></property>
+		<property name="postal_code"></property>
+		<property name="fax"></property>
+		<property name="addr"></property>
+		<property name="introduce"></property>
+		<property name="strength"></property>
+		<property name="create_time"></property>
+		<property name="create_by"></property>
+		<property name="lastest_upd_time"></property>
+		<property name="lastest_upd_by"></property>
+		<property name="deleted"></property>
+		<property name="merchant_symbol"></property>
+		<property name="refund_summary"></property>
+		<property name="mobile_phone"></property>
+	</class>
+	
+	<class name="Tb_pay_type" table="tb_pay_type">
+		<id name="id"><generator class="assigned"></generator></id>
+		<property name="merchandise_code"></property>
+		<property name="type"></property>
+		<property name="integral_profit_rate"></property>
+		<property name="instalments_three"></property>
+		<property name="instalments_six"></property>
+		<property name="instalments_twelve"></property>
+		<property name="least_cash_ratio"></property>
+		<property name="price_cash"></property>
+		<property name="price_integral"></property>
+	</class>
+	
+	<class name="Tb_sale_area" table="tb_sale_area">
+		<id name="id"><generator class="assigned"></generator></id>
+		<property name="merchandise_code"></property>
+		<property name="area_lvl"></property>
+		<property name="area_code"></property>
+	</class>
+	
+	<class name="Tb_sort" table="tb_sort">
+		<id name="id"><generator class="assigned"></generator></id>
+		<property name="name"></property>
+		<property name="idx"></property>
+		<property name="code"></property>
+		<property name="photo"></property>
+		<property name="parent_id"></property>
+		<property name="lvl"></property>
+		<property name="deleted"></property>
+	</class>
+</hibernate-mapping>  
